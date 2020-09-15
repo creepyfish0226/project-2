@@ -26,4 +26,26 @@ module.exports = function(app) {
   app.get("/members", isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
+
+  // Each of the below routes just handles the HTML page that the user gets sent to.
+
+  // index route loads view.html
+  app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/members.html"));
+  });
+
+  // cms route loads cms.html
+  app.get("/cms", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/cms.html"));
+  });
+
+  // blog route loads members.html
+  app.get("/blog", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/members.html"));
+  });
+
+  // zipcodes route loads zipcode-manager.html
+  app.get("/zipcodes", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/zipcode-manager.html"));
+  });
 };
