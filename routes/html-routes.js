@@ -50,7 +50,8 @@ module.exports = function(app) {
   // });
 
   // // zipcodes route loads zipcode-manager.html
-  // app.get("/zipcodes", (req, res) => {
-  //   res.sendFile(path.join(__dirname, "../public/zipcode-manager.html"));
-  // });
+  app.get("/zipcodes", (req, res) => {
+    // res.sendFile(path.join(__dirname, "../public/zipcode-manager.html"));
+    res.render("zipcode-manager")
+  });
 };
