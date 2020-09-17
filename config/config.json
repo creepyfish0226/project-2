@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "rootroot",
+    "password": "lidd0501",
     "database": "greenerGrassDB",
     "host": "127.0.0.1",
     "dialect": "mysql"
