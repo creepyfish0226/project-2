@@ -77,7 +77,7 @@ $(document).ready(() => {
     const deleteBtn = $("<button>");
     deleteBtn.text("x");
     deleteBtn.addClass("delete btn btn-danger");
-    const editBtn = $("<button>");
+    const editBtn = $("<button>"); 
     editBtn.text("EDIT");
     editBtn.addClass("edit btn btn-info");
     const newReviewTitle = $("<h2>");
