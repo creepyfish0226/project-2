@@ -34,11 +34,6 @@ module.exports = function(app) {
     res.render("review");
   });
 
-  //  blog route loads members.html
-  app.get("/blog", isAuthenticated, (req, res) => {
-    res.render("members");
-  });
-
   // // zipcodes route loads zipcode-manager.html
   app.get("/zipcodes", isAuthenticated, (req, res) => {
     res.render("zipcode-manager");

@@ -60,7 +60,7 @@ $(document).ready(() => {
   // Submits a new Review and brings user to blog page upon completion
   function submitReview(review) {
     $.post("/api/reviews", review, () => {
-      window.location.href = "/blog";
+      window.location.href = "/members";
     });
   }
 
@@ -128,7 +128,7 @@ $(document).ready(() => {
       url: "/api/reviews",
       data: review
     }).then(() => {
-      window.location.href = "/blog";
+      window.location.href = "/";
     });
   }
 });

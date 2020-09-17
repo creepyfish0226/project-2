@@ -45,9 +45,7 @@ $(document).ready(() => {
       newTr.append("<td>0</td>");
     }
     newTr.append(
-      "<td><a href='/blog?zipcode_id=" +
-        zipcodeData.id +
-        "'>Go to Reviews</a></td>"
+      "<td><a href='/?zipcode_id=" + zipcodeData.id + "'>Go to Reviews</a></td>"
     );
     newTr.append(
       "<td><a href='/review?zipcode_id=" +
