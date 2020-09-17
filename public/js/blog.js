@@ -116,7 +116,7 @@ $(document).ready(() => {
       .parent()
       .parent()
       .data("review");
-    window.location.href = "/cms?review_id=" + currentReview.id;
+    window.location.href = "/review?review_id=" + currentReview.id;
   }
 
   // This function displays a message when there are no reviews
@@ -132,7 +132,7 @@ $(document).ready(() => {
     messageH2.html(
       "No reviews yet" +
         partial +
-        ", navigate <a href='/cms" +
+        ", navigate <a href='/review" +
         query +
         "'>here</a> in order to get started."
     );
