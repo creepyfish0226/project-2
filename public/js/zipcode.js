@@ -50,7 +50,7 @@ $(document).ready(() => {
         "'>Go to Reviews</a></td>"
     );
     newTr.append(
-      "<td><a href='/cms?zipcode_id=" +
+      "<td><a href='/review?zipcode_id=" +
         zipcodeData.id +
         "'>Create a Review</a></td>"
     );

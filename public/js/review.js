@@ -3,10 +3,10 @@ $(document).ready(() => {
   // Getting jQuery references to the review body, title, form, and zipcode select post
   const bodyInput = $("#body");
   const titleInput = $("#title");
-  const cmsForm = $("#cms");
+  const reviewForm = $("#review");
   const zipcodeSelect = $("#zipcode");
   // Adding an event listener for when the form is submitted
-  $(cmsForm).on("submit", handleFormSubmit);
+  $(reviewForm).on("submit", handleFormSubmit);
   // Gets the part of the url that comes after the "?" (which we have if we're updating a review)
   const url = window.location.search;
   let reviewId;
@@ -49,9 +49,10 @@ $(document).ready(() => {
     // If we're updating a review run updateReview to update a review
     // Otherwise run submitReview to create a whole new review
     if (updating) {
-      newPReview.id = reviewId;
+      newReview.id = reviewId;
       updateReview(newReview);
     } else {
+      console.log("else");
       submitReview(newReview);
     }
   }
@@ -79,7 +80,7 @@ $(document).ready(() => {
     $.get(queryUrl, data => {
       if (data) {
         console.log(data.ZipCodeId || data.id);
-        // If this review exists, prefill our cms forms with its data
+        // If this review exists, prefill our review forms with its data
         titleInput.val(data.title);
         bodyInput.val(data.body);
         zipcodeId = data.ZipCodeId || data.id;
@@ -97,9 +98,9 @@ $(document).ready(() => {
   // Function to either render a list of zipcodes, or if there are none, direct the user to the page
   // to create a zipcode first
   function renderZipcodeList(data) {
-    if (!data.length) {
+    /* if (!data.length) {
       window.location.href = "/zipcodes";
-    }
+    }*/
     $(".hidden").removeClass("hidden");
     const rowsToAdd = [];
     for (let i = 0; i < data.length; i++) {
