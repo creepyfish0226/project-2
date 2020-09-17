@@ -66,6 +66,12 @@ $(document).ready(() => {
     formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
     const newReviewCard = $("<div>");
     newReviewCard.addClass("card");
+    newReviewCard.attr("data-aos", "fade-right");
+    newReviewCard.attr("data-aos-duration", "1000");
+    newReviewCard.attr("data-aos-once", "false");
+    newReviewCard.attr("data-aos-easing", "ease-in-out");
+    newReviewCard.attr("data-aos-delay", "50");
+    newReviewCard.attr("data-aos-offset", "200");
     const newReviewCardHeading = $("<div>");
     newReviewCardHeading.addClass("card-header");
     const deleteBtn = $("<button>");
