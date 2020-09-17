@@ -1,7 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
   const ZipCode = sequelize.define("ZipCode", {
     // Giving the Zip Code model a name of type INTEGER
-    name: DataTypes.INTEGER
+    Zip: DataTypes.INTEGER,
+    City: DataTypes.STRING,
+    State: DataTypes.STRING,
+    Timezone: DataTypes.INTEGER,
+    Latitude: DataTypes.DECIMAL(12, 4),
+    Longitude: DataTypes.DECIMAL(12, 4)
   });
 
   ZipCode.associate = function(models) {
