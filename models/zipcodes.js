@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     State: DataTypes.STRING,
     Timezone: DataTypes.INTEGER,
     Latitude: DataTypes.DECIMAL(12, 4),
-    Longitude: DataTypes.DECIMAL
+    Longitude: DataTypes.DECIMAL(12, 4)
   });
 
   ZipCode.associate = function(models) {
