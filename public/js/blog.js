@@ -70,7 +70,7 @@ $(document).ready(() => {
     newReviewCard.attr("data-aos-duration", "1000");
     newReviewCard.attr("data-aos-once", "false");
     newReviewCard.attr("data-aos-easing", "ease-in-out");
-    newReviewCard.attr("data-aos-delay", "50");
+    newReviewCard.attr("data-aos-delay", "75");
     newReviewCard.attr("data-aos-offset", "200");
     const newReviewCardHeading = $("<div>");
     newReviewCardHeading.addClass("card-header");
