@@ -3,16 +3,19 @@ mapboxgl.accessToken =
 const zip = $("#zip").data("zip");
 console.log(zip);
 
-$.get(`/api/zipcode/${zip}`).then((results) => {
+$.get(`/api/zipcode/${zip}`).then(results => {
   console.log(results);
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v11",
     center: [results.Longitude, results.Latitude],
-    zoom: 11,
+    zoom: 11
   });
   const marker = new mapboxgl.Marker()
     .setLngLat([results.Longitude, results.Latitude])
     .addTo(map);
-  $("#biggestCity").text(`The biggest city in this zip code is ${results.City}, ${results.State}`)
+  console.log(marker);
+  $("#biggestCity").text(
+    `The biggest city in this zip code is ${results.City}, ${results.State}`
+  );
 });

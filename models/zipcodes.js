@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   const ZipCode = sequelize.define("ZipCode", {
     // Giving the Zip Code model a name of type INTEGER
-    Zip: DataTypes.INTEGER,
+    Zip: DataTypes.STRING,
     City: DataTypes.STRING,
     State: DataTypes.STRING,
     Timezone: DataTypes.INTEGER,
