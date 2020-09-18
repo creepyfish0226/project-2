@@ -6,57 +6,49 @@
                 <a class="btn btn-success ml-3" href="/logout">Logout</a>
                 <a class="btn btn-success ml-3" href="/review">New Review</a>
                 <a class="btn btn-success ml-3" href="/zipcodes">Manage ZipCodes</a>
+                <a class="btn btn-success ml-3" href="/members">All Reviews</a>
             </div>
         </div>
     </div>
 </nav>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <h2>Welcome <span class="member-name"></span></h2>
-        </div>
-    </div>
-</div>
 <div class="container blog">
     <div class="row">
-        <div class="col-md-12 blog-container">
-
+        <div class="col-md-6">
             <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
             {{#each Zip}}
             <h1 id='zip' data-zip={{zip}}>{{zip}}</h1>
             {{/each}}
-            <div id='map' style='width: 400px; height: 300px;'></div>
-            <h3 id="biggestCity"></h3>
+            <div id='map' style='width: 1115px; height: 300px;'></div>
+            <h4 id="biggestCity" style="color: yellow;"></h4>
             <h2>Reviews:</h2>
-            {{#each review}} <div class="card aos-init aos-animate" data-aos="fade-right"
-                data-aos-duration="1000" data-aos-once="false" data-aos-easing="ease-in-out" data-aos-delay="75"
-                data-aos-offset="200" data-review={{id}}>
+            {{#each review}}
+        </div>
+        <div class="col-md-12 blog-container">
+            <div class="card aos-init aos-animate" data-aos="fade-right" data-aos-duration="1000" data-aos-once="false"
+                data-aos-easing="ease-in-out" data-aos-delay="75" data-aos-offset="200" data-review={{id}}>
                 <div class="card-header bg-success">
-
-                    <button class="delete btn btn-danger" data-id={{id}}>x</button><button class="edit btn btn-info" data-id={{id}}>EDIT</button>
+                    <button class="delete btn btn-danger" data-id={{id}}>x</button>
+                    <button class="edit btn btn-info"data-id={{id}}>EDIT</button>
                     <h2>{{ title }}<h5>September 18th 2020, 11:25:51 am</h5>
-                        <h5>{{ ZipCode.City }}, {{ ZipCode.State }}</h5>
+                    <h5>{{ ZipCode.City }}, {{ ZipCode.State }}</h5>
                     </h2><a href="/zipcodes/{{ZipCode.Zip}}" style="color: yellow;">ZipCode: {{ ZipCode.Zip }}</a>
                 </div>
                 <div class="card-body">
                     <p>{{ body }}</p>
                 </div>
             </div>
-
-
             {{/each}}
             {{#each nothing }}
-                <h2>No reviews for this zipcode</h2>
+            <h2>No reviews for this zipcode</h2>
             {{/each}}
-             {{#each none }}
-                <h2>This zipcode does not exist</h2>
-              {{/each}}
-        </div >
-    </div >
-</div >
+            {{#each none }}
+            <h2>This zipcode does not exist</h2>
+            {{/each}}
+        </div>
+    </div>
+</div>
 <script src="/js/members.js" type="text/javascript"></script>
-<script src="/js/blog.js" type="text/javascript"></script>
 <script src="/js/maps.js"></script>
 <script>
-   AOS.init();
+    AOS.init();
 </script>
