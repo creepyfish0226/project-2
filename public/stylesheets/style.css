@@ -1,3 +1,8 @@
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: url("https://www.publicdomainpictures.net/pictures/20000/velka/grass-background.jpg");
+  } 
 form.signup,
 form.login {
   margin-top: 50px;
@@ -6,14 +11,26 @@ button.submit {
   float: right;
 }
 
-form#cms {
+form#review {
   margin-top: 50px;
 }
 
-#cms textarea {
+#review textarea {
   resize: none;
 }
 
+a {
+  color: yellow;
+  font-weight: bold;
+}
+
+.btn {
+  color: white !important;
+  font-weight: bold;
+}
+.navbar-brand {
+  color: white;
+}
 .card-header button.delete,
 button.edit {
   float: right;
@@ -51,29 +68,8 @@ button.edit {
 }
 
 .card {
-  margin-bottom: 75px;
+  margin-bottom: 10px;
 }
-
-body {
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-image: url("../img/grass-background.jpg");
+.card-body {
+  color: black !important;
 }
-
-/* .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  flex-direction: column;
-}
-
-.div {
-  height: 300px;
-  width: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 100px 0;
-  border-radius: 7px;
-} */

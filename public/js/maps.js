@@ -1,10 +1,8 @@
 mapboxgl.accessToken =
-  "pk.eyJ1Ijoia2lsbGVyY29kaW5nbW9ua2V5IiwiYSI6ImNrMnc4enluazBjOGEzYm5xMjcyeHVlZ3IifQ.RqVe0wJ3PN2eap3PmnR2pA";
+  "pk.eyJ1IjoibWFjcGFydGh1bSIsImEiOiJja2Y0YjA2bGgwYms1MnBuNHU1eXBwcWtiIn0.CHl4KYKsltpTGyUru9eg8A";
 const zip = $("#zip").data("zip");
-console.log(zip);
 
 $.get(`/api/zipcode/${zip}`).then(results => {
-  console.log(results);
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v11",
