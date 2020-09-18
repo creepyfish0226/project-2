@@ -54,6 +54,11 @@ button.edit {
   margin-bottom: 75px;
 }
 
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 /* .container {
   display: flex;
   justify-content: center;
