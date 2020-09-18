@@ -123,8 +123,6 @@ module.exports = function(app) {
       res.json(dbReview);
     });
   });
-
-  // POST route for saving a new Review
   app.post("/api/reviews", (req, res) => {
     db.Review.create(req.body).then(dbReview => {
       res.json(dbReview);
@@ -152,4 +150,9 @@ module.exports = function(app) {
       res.json(dbReview);
     });
   });
+  app.get("/api/zipcode/:zip",(req, res) =>{
+    db.ZipCode.findOne({where :{zip:req.params.zip}})
+    .then(results=>res.json(results))
+    .catch(err=> {if(err) throw err})
+  })
 };
