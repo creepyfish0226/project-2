@@ -62,13 +62,13 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/zipcodes/:id", (req, res) => {
+  app.get("/api/zipcodes/:zip", (req, res) => {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Review
     db.ZipCode.findOne({
       where: {
-        id: req.params.id
+        Zip: req.params.zip
       },
       include: [db.Review]
     }).then(dbZipCode => {
@@ -78,16 +78,6 @@ module.exports = function(app) {
 
   app.post("/api/zipcodes", (req, res) => {
     db.ZipCode.create(req.body).then(dbZipCode => {
-      res.json(dbZipCode);
-    });
-  });
-
-  app.delete("/api/zipcodes/:id", (req, res) => {
-    db.ZipCode.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(dbZipCode => {
       res.json(dbZipCode);
     });
   });

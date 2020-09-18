@@ -73,21 +73,22 @@ $(document).ready(() => {
     newReviewCard.attr("data-aos-delay", "75");
     newReviewCard.attr("data-aos-offset", "200");
     const newReviewCardHeading = $("<div>");
-    newReviewCardHeading.addClass("card-header");
+    newReviewCardHeading.addClass("card-header bg-success");
     const deleteBtn = $("<button>");
     deleteBtn.text("x");
     deleteBtn.addClass("delete btn btn-danger");
-    const editBtn = $("<button>"); 
+    const editBtn = $("<button>");
     editBtn.text("EDIT");
     editBtn.addClass("edit btn btn-info");
     const newReviewTitle = $("<h2>");
-    const newReviewDate = $("<small>");
-    const newReviewZipcode = $("<h5>");
-    newReviewZipcode.text("ZipCode #: " + review.ZipCode.name);
+    const newReviewDate = $("<h5>");
+    const newReviewCity = $("<h5>");
+    const newReviewZipcode = $(
+      "<a href='/?zipcode_zip=" + review.ZipCode.Zip + "'>"
+    );
+    newReviewZipcode.text("ZipCode: " + review.ZipCode.Zip);
     newReviewZipcode.css({
-      float: "right",
-      color: "blue",
-      "margin-top": "-10px"
+      color: "blue"
     });
     const newReviewCardBody = $("<div>");
     newReviewCardBody.addClass("card-body");
@@ -95,7 +96,9 @@ $(document).ready(() => {
     newReviewTitle.text(review.title + " ");
     newReviewBody.text(review.body);
     newReviewDate.text(formattedDate);
+    newReviewCity.text(review.ZipCode.City + ", " + review.ZipCode.State);
     newReviewTitle.append(newReviewDate);
+    newReviewTitle.append(newReviewCity);
     newReviewCardHeading.append(deleteBtn);
     newReviewCardHeading.append(editBtn);
     newReviewCardHeading.append(newReviewTitle);

@@ -6,10 +6,9 @@ $(document).ready(() => {
   // Adding event listeners to the form to create a new object, and the button to delete
   // a zipcode
   $(document).on("submit", "#zipcode-form", handleZipcodeFormSubmit);
-  $(document).on("click", ".delete-zipcode", handleDeleteButtonPress);
 
   // Getting the initial list of zipcodes
-  getZipcodes();
+  //getZipcodes();
 
   // A function to handle what happens when the form is submitted to create a new Zipcode
   function handleZipcodeFormSubmit(event) {
@@ -23,22 +22,15 @@ $(document).ready(() => {
     ) {
       return;
     }
-    // Calling the upsertZipcode function and passing in the value of the name input
-    upsertZipcode({
-      name: nameInput.val().trim()
-    });
-  }
-
-  // A function for creating a zipcode. Calls getZipcodes upon completion
-  function upsertZipcode(zipcodeData) {
-    $.post("/api/zipcodes", zipcodeData).then(getZipcodes);
+    // Calling the getZipcodes function and passing in the value of the zipcode input
+    getZipcodes(nameInput.val().trim());
   }
 
   // Function for creating a new list row for zipcodes
   function createZipcodeRow(zipcodeData) {
     const newTr = $("<tr>");
     newTr.data("zipcode", zipcodeData);
-    newTr.append("<td>" + zipcodeData.name + "</td>");
+    newTr.append("<td>" + zipcodeData.Zip + "</td>");
     if (zipcodeData.Reviews) {
       newTr.append("<td> " + zipcodeData.Reviews.length + "</td>");
     } else {
@@ -52,19 +44,15 @@ $(document).ready(() => {
         zipcodeData.id +
         "'>Create a Review</a></td>"
     );
-    newTr.append(
-      "<td><a style='cursor:pointer;color:red' class='delete-zipcode'>Delete ZipCode</a></td>"
-    );
     return newTr;
   }
 
   // Function for retrieving zipcodes and getting them ready to be rendered to the page
-  function getZipcodes() {
-    $.get("/api/zipcodes", data => {
+  function getZipcodes(zipcodeData) {
+    $.get("/api/zipcodes/" + zipcodeData, data => {
       const rowsToAdd = [];
-      for (let i = 0; i < data.length; i++) {
-        rowsToAdd.push(createZipcodeRow(data[i]));
-      }
+      rowsToAdd.push(createZipcodeRow(data));
+      console.log(rowsToAdd);
       renderZipcodeList(rowsToAdd);
       nameInput.val("");
     });
@@ -83,26 +71,5 @@ $(document).ready(() => {
     } else {
       renderEmpty();
     }
-  }
-
-  // Function for handling what to render when there are no Zipcodes
-  function renderEmpty() {
-    const alertDiv = $("<div>");
-    alertDiv.addClass("alert alert-danger");
-    alertDiv.text("You must create a ZipCode before you can create a Review.");
-    zipcodeContainer.append(alertDiv);
-  }
-
-  // Function for handling what happens when the delete button is pressed
-  function handleDeleteButtonPress() {
-    const listItemData = $(this)
-      .parent("td")
-      .parent("tr")
-      .data("zipcode");
-    const id = listItemData.id;
-    $.ajax({
-      method: "DELETE",
-      url: "/api/zipcodes/" + id
-    }).then(getZipcodes);
   }
 });

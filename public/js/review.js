@@ -95,12 +95,8 @@ $(document).ready(() => {
   function getZipcodes() {
     $.get("/api/zipcodes", renderZipcodeList);
   }
-  // Function to either render a list of zipcodes, or if there are none, direct the user to the page
-  // to create a zipcode first
+  // Function to render a list of zipcodes
   function renderZipcodeList(data) {
-    /* if (!data.length) {
-      window.location.href = "/zipcodes";
-    }*/
     $(".hidden").removeClass("hidden");
     const rowsToAdd = [];
     for (let i = 0; i < data.length; i++) {
@@ -117,7 +113,7 @@ $(document).ready(() => {
   function createZipcodeRow(zipcode) {
     const listOption = $("<option>");
     listOption.attr("value", zipcode.id);
-    listOption.text(zipcode.name);
+    listOption.text(zipcode.Zip);
     return listOption;
   }
 
