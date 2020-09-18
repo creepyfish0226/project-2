@@ -122,20 +122,20 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/reviews/zip", (req, res) => {
-    db.ZipCode.findOne({
-      where: { Zip: req.body.zip }
-    }).then(results => {
-      const update = {
-        ZipCodeId: results.dataValues.id,
-        title: req.body.title,
-        body: req.body.body
-      };
-      db.Review.create(update).then(dbReview => {
-        res.json(dbReview);
-      });
-    });
-  });
+  // app.post("/api/reviews/zip", (req, res) => {
+  //   db.ZipCode.findOne({
+  //     where: { Zip: req.body.zip }
+  //   }).then(results => {
+  //     const update = {
+  //       ZipCodeId: results.dataValues.id,
+  //       title: req.body.title,
+  //       body: req.body.body
+  //     };
+  //     db.Review.create(update).then(dbReview => {
+  //       res.json(dbReview);
+  //     });
+  //   });
+  // });
 
   // DELETE route for deleting Reviews
   app.delete("/api/reviews/:id", (req, res) => {
@@ -158,6 +158,7 @@ module.exports = function(app) {
       res.json(dbReview);
     });
   });
+
   app.get("/api/zipcode/:zip", (req, res) => {
     db.ZipCode.findOne({ where: { zip: req.params.zip } })
       .then(results => res.json(results))
