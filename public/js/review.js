@@ -77,6 +77,7 @@ $(document).ready(() => {
       default:
         return;
     }
+    console.log(queryUrl)
     $.get(queryUrl, data => {
       if (data) {
         console.log(data.ZipCodeId || data.id);

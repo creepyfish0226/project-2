@@ -10,7 +10,7 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
     });
   });
 
@@ -20,12 +20,12 @@ module.exports = function(app) {
   app.post("/api/signup", (req, res) => {
     db.User.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     })
       .then(() => {
         res.redirect(307, "/api/login");
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(401).json(err);
       });
   });
@@ -46,7 +46,7 @@ module.exports = function(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
       });
     }
   });
@@ -56,8 +56,10 @@ module.exports = function(app) {
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Review
     db.ZipCode.findAll({
-      include: [db.Review]
-    }).then(dbZipCode => {
+      where: { City: "Charlotte" },
+      include: [db.Review],
+    }).then((dbZipCode) => {
+      console.log(dbZipCode);
       res.json(dbZipCode);
     });
   });
@@ -68,16 +70,16 @@ module.exports = function(app) {
     // In this case, just db.Review
     db.ZipCode.findOne({
       where: {
-        Zip: req.params.zip
+        Zip: req.params.zip,
       },
-      include: [db.Review]
-    }).then(dbZipCode => {
+      include: [db.Review],
+    }).then((dbZipCode) => {
       res.json(dbZipCode);
     });
   });
 
   app.post("/api/zipcodes", (req, res) => {
-    db.ZipCode.create(req.body).then(dbZipCode => {
+    db.ZipCode.create(req.body).then((dbZipCode) => {
       res.json(dbZipCode);
     });
   });
@@ -95,6 +97,7 @@ module.exports = function(app) {
       where: query,
       include: [db.ZipCode]
     }).then(dbReview => {
+      console.log('<====>')
       res.json(dbReview);
     });
   });
@@ -106,28 +109,44 @@ module.exports = function(app) {
     // In this case, just db.ZipCode
     db.Review.findOne({
       where: {
-        id: req.params.id
+        id: req.params.id,
       },
-      include: [db.ZipCode]
-    }).then(dbReview => {
+      include: [db.ZipCode],
+    }).then((dbReview) => {
+      res.json(dbReview);
+    });
+  });
+  app.post("/api/reviews", (req, res) => {
+    db.Review.create(req.body).then((dbReview) => {
       res.json(dbReview);
     });
   });
 
-  // POST route for saving a new Review
-  app.post("/api/reviews", (req, res) => {
-    db.Review.create(req.body).then(dbReview => {
-      res.json(dbReview);
+  app.post("/api/reviews/zip", (req, res) => {
+    db.ZipCode.findOne({
+      where: { Zip: req.body.zip },
+    }).then((results) => {
+      const update = {
+        ZipCodeId: results.dataValues.id,
+        title: req.body.title,
+        body: req.body.body,
+      };
+      db.Review.create(update).then((dbReview) => {
+        res.json(dbReview);
+      });
     });
+    // db.Review.create(req.body).then(dbReview => {
+    //   res.json(dbReview);
+    // });
   });
 
   // DELETE route for deleting Reviews
   app.delete("/api/reviews/:id", (req, res) => {
     db.Review.destroy({
       where: {
-        id: req.params.id
+        id: req.params.id,
       }
-    }).then(dbReview => {
+    }).then((dbReview) => {
       res.json(dbReview);
     });
   });
@@ -136,10 +155,19 @@ module.exports = function(app) {
   app.put("/api/reviews", (req, res) => {
     db.Review.update(req.body, {
       where: {
-        id: req.body.id
-      }
-    }).then(dbReview => {
+        id: req.body.id,
+      },
+    }).then((dbReview) => {
       res.json(dbReview);
     });
+  });
+  app.get("/api/zipcode/:zip", (req, res) => {
+    db.ZipCode.findOne({ where: { zip: req.params.zip } })
+      .then((results) => res.json(results))
+      .catch((err) => {
+        if (err) {
+          throw err;
+        }
+      });
   });
 };

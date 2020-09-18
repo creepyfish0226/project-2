@@ -10,18 +10,18 @@ $(document).ready(() => {
   // Variable to hold our reviews
   let reviews;
 
-  // The code below handles the case where we want to get blog reviews for a specific zipcode
-  // Looks for a query param in the url for zipcode_id
-  const url = window.location.search;
-  let zipcodeId;
-  if (url.indexOf("?zipcode_id=") !== -1) {
-    zipcodeId = url.split("=")[1];
-    getReviews(zipcodeId);
-  }
-  // If there's no zipcodeId we just get all reviews as usual
-  else {
-    getReviews();
-  }
+  // // The code below handles the case where we want to get blog reviews for a specific zipcode
+  // // Looks for a query param in the url for zipcode_id
+  // const url = window.location.search;
+  // let zipcodeId;
+  // if (url.indexOf("?zipcode_id=") !== -1) {
+  //   zipcodeId = url.split("=")[1];
+  //   getReviews(zipcodeId);
+  // }
+  // // If there's no zipcodeId we just get all reviews as usual
+  // else {
+  //   getReviews();
+  // }
 
   // This function grabs reviews from the database and updates the view
   function getReviews(zipcode) {
@@ -46,7 +46,7 @@ $(document).ready(() => {
       method: "DELETE",
       url: "/api/reviews/" + id
     }).then(() => {
-      getReviews(reviewCategorySelect.val());
+      location.reload();
     });
   }
 
@@ -84,11 +84,11 @@ $(document).ready(() => {
     const newReviewDate = $("<h5>");
     const newReviewCity = $("<h5>");
     const newReviewZipcode = $(
-      "<a href='/?zipcode_zip=" + review.ZipCode.Zip + "'>"
+      "<a href='/reviewq?" + review.ZipCode.Zip + "'>"
     );
     newReviewZipcode.text("ZipCode: " + review.ZipCode.Zip);
     newReviewZipcode.css({
-      color: "blue"
+      color: "yellow"
     });
     const newReviewCardBody = $("<div>");
     newReviewCardBody.addClass("card-body");
@@ -112,20 +112,15 @@ $(document).ready(() => {
 
   // This function figures out which review we want to delete and then calls deleteReview
   function handleReviewDelete() {
-    const currentReview = $(this)
-      .parent()
-      .parent()
-      .data("review");
-    deleteReview(currentReview.id);
+    const currentReview = $(this).data("id");
+    deleteReview(currentReview);
   }
 
   // This function figures out which review we want to edit and takes it to the appropriate url
   function handleReviewEdit() {
-    const currentReview = $(this)
-      .parent()
-      .parent()
-      .data("review");
-    window.location.href = "/review?review_id=" + currentReview.id;
+    console.log($(this).data("id"))
+    const currentReview = $(this).data("id");
+    window.location.href = "/review?review_id=" + currentReview;
   }
 
   // This function displays a message when there are no reviews

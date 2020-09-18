@@ -1,3 +1,8 @@
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: url("https://www.publicdomainpictures.net/pictures/20000/velka/grass-background.jpg");
+  } 
 form.signup,
 form.login {
   margin-top: 50px;
@@ -15,9 +20,8 @@ form#review {
 }
 
 a {
-  color: #f88400;
+  color: yellow;
   font-weight: bold;
-  
 }
 
 .btn {
