@@ -52,7 +52,7 @@ $(document).ready(() => {
       newReview.id = reviewId;
       updateReview(newReview);
     } else {
-      console.log("else");
+      // console.log("else");
       submitReview(newReview);
     }
   }
@@ -80,7 +80,7 @@ $(document).ready(() => {
     console.log(queryUrl);
     $.get(queryUrl, data => {
       if (data) {
-        console.log(data.ZipCodeId || data.id);
+        // console.log(data.ZipCodeId || data.id);
         // If this review exists, prefill our review forms with its data
         titleInput.val(data.title);
         bodyInput.val(data.body);
@@ -104,8 +104,8 @@ $(document).ready(() => {
       rowsToAdd.push(createZipcodeRow(data[i]));
     }
     zipcodeSelect.empty();
-    console.log(rowsToAdd);
-    console.log(zipcodeSelect);
+    // console.log(rowsToAdd);
+    // console.log(zipcodeSelect);
     zipcodeSelect.append(rowsToAdd);
     zipcodeSelect.val(zipcodeId);
   }

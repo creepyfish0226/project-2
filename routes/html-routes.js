@@ -27,10 +27,18 @@ module.exports = function(app) {
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {
     db.Review.findAll({ include: [db.ZipCode] }).then(dbReview => {
-      res.render("members", {
-        review: dbReview,
-        Zip: [{ zip: req.params.zip }]
-      });
+      // console.log(dbReview);
+      if (dbReview.length) {
+        res.render("members", {
+          review: dbReview,
+          Zip: [{ zip: req.params.zip }]
+        });
+      } else {
+        res.render("members", {
+          nothing: { nothing: true },
+          Zip: [{ zip: req.params.zip }]
+        });
+      }
     });
   });
 

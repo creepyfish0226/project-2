@@ -59,7 +59,7 @@ module.exports = function(app) {
       where: { City: "Charlotte" },
       include: [db.Review]
     }).then(dbZipCode => {
-      console.log(dbZipCode);
+      // console.log(dbZipCode);
       res.json(dbZipCode);
     });
   });
@@ -77,29 +77,6 @@ module.exports = function(app) {
       res.json(dbZipCode);
     });
   });
-
-  // app.post("/api/zipcodes", (req, res) => {
-  //   db.ZipCode.create(req.body).then(dbZipCode => {
-  //     res.json(dbZipCode);
-  //   });
-  // });
-
-  // // GET route for getting all of the Reviews
-  // app.get("/api/reviews", (req, res) => {
-  //   const query = {};
-  //   if (req.query.zipcode_id) {
-  //     query.ZipCodeId = req.query.zipcode_id;
-  //   }
-  //   // Here we add an "include" property to our options in our findAll query
-  //   // We set the value to an array of the models we want to include in a left outer join
-  //   // In this case, just db.ZipCode
-  //   db.Review.findAll({
-  //     where: query,
-  //     include: [db.ZipCode]
-  //   }).then(dbReview => {
-  //     res.json(dbReview);
-  //   });
-  // });
 
   // Get route for retrieving a single Review
   app.get("/api/reviews/:id", (req, res) => {
@@ -121,21 +98,6 @@ module.exports = function(app) {
       res.json(dbReview);
     });
   });
-
-  // app.post("/api/reviews/zip", (req, res) => {
-  //   db.ZipCode.findOne({
-  //     where: { Zip: req.body.zip }
-  //   }).then(results => {
-  //     const update = {
-  //       ZipCodeId: results.dataValues.id,
-  //       title: req.body.title,
-  //       body: req.body.body
-  //     };
-  //     db.Review.create(update).then(dbReview => {
-  //       res.json(dbReview);
-  //     });
-  //   });
-  // });
 
   // DELETE route for deleting Reviews
   app.delete("/api/reviews/:id", (req, res) => {

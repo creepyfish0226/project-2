@@ -52,7 +52,7 @@ $(document).ready(() => {
     $.get("/api/zipcodes/" + zipcodeData, data => {
       const rowsToAdd = [];
       rowsToAdd.push(createZipcodeRow(data));
-      console.log(rowsToAdd);
+      // console.log(rowsToAdd);
       renderZipcodeList(rowsToAdd);
       nameInput.val("");
     });
@@ -66,7 +66,7 @@ $(document).ready(() => {
       .remove();
     zipcodeContainer.children(".alert").remove();
     if (rows.length) {
-      console.log(rows);
+      // console.log(rows);
       zipcodeList.prepend(rows);
     } else {
       renderEmpty();

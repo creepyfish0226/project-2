@@ -28,7 +28,8 @@
                 <div class="card-header bg-success">
 
                     <button class="delete btn btn-danger" data-id={{id}}>x</button><button class="edit btn btn-info" data-id={{id}}>EDIT</button>
-                    <h2>{{ title }}<h5>September 18th 2020, 11:25:51 am</h5>
+                    <h2>{{ title }}<h5>{{createdAt}}</h5>
+                    {{!-- September 18th 2020, 11:25:51 am --}}
                         <h5>{{ ZipCode.City }}, {{ ZipCode.State }}</h5>
                     </h2><a href="/zipcodes/{{ZipCode.Zip}}" style="color: yellow;">ZipCode: {{ ZipCode.Zip }}</a>
                 </div>
@@ -40,11 +41,8 @@
 
             {{/each}}
             {{#each nothing }}
-                <h2>No reviews for this zipcode</h2>
+                <h2>No reviews yet, navigate <a href='/review'>here</a> in order to get started.</h2>
             {{/each}}
-             {{#each none }}
-                <h2>This zipcode does not exist</h2>
-              {{/each}}
         </div >
     </div >
 </div >
