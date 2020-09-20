@@ -57,7 +57,7 @@ $(document).ready(() => {
     }
   }
 
-  // Submits a new Review and brings user to blog page upon completion
+  // Submits a new Review and brings user to members page upon completion
   function submitReview(review) {
     $.post("/api/reviews", review, () => {
       window.location.href = "/members";
@@ -118,7 +118,7 @@ $(document).ready(() => {
     return listOption;
   }
 
-  // Update a given review, bring user to the blog page when done
+  // Update a given review, bring user to the members page when done
   function updateReview(review) {
     $.ajax({
       method: "PUT",

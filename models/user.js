@@ -31,5 +31,13 @@ module.exports = function(sequelize, DataTypes) {
       null
     );
   });
+
+  User.associate = function(models) {
+    // Associating a User with Reviews
+    // When a User is deleted, also delete any associated Reviews
+    User.hasMany(models.Review, {
+      onDelete: "cascade"
+    });
+  };
   return User;
 };

@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+// const user = require("../models/user");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -51,6 +52,7 @@ module.exports = function(app) {
     }
   });
 
+  // Get route for retrieving all zipcodes
   app.get("/api/zipcodes", (req, res) => {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
@@ -64,6 +66,7 @@ module.exports = function(app) {
     });
   });
 
+  // Get route for retrieving a single zipcode
   app.get("/api/zipcodes/:zip", (req, res) => {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
@@ -93,9 +96,22 @@ module.exports = function(app) {
     });
   });
 
+  // Post route for creating a Review
   app.post("/api/reviews", (req, res) => {
-    db.Review.create(req.body).then(dbReview => {
-      res.json(dbReview);
+    db.User.findOne({
+      where: {
+        id: req.user.id
+      }
+    }).then(results => {
+      console.log(results);
+      db.Review.create({
+        title: req.body.title,
+        body: req.body.body,
+        ZipCodeId: req.body.ZipCodeId,
+        UserId: results.id
+      }).then(dbReview => {
+        res.json(dbReview);
+      });
     });
   });
 
@@ -119,15 +135,5 @@ module.exports = function(app) {
     }).then(dbReview => {
       res.json(dbReview);
     });
-  });
-
-  app.get("/api/zipcode/:zip", (req, res) => {
-    db.ZipCode.findOne({ where: { zip: req.params.zip } })
-      .then(results => res.json(results))
-      .catch(err => {
-        if (err) {
-          throw err;
-        }
-      });
   });
 };

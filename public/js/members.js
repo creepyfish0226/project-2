@@ -22,6 +22,7 @@ $(document).ready(() => {
   // This function figures out which review we want to delete and then calls deleteReview
   function handleReviewDelete() {
     const currentReview = $(this).data("id");
+    console.log(currentReview);
     deleteReview(currentReview);
   }
 
