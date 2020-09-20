@@ -22,12 +22,13 @@ $(document).ready(() => {
   // This function figures out which review we want to delete and then calls deleteReview
   function handleReviewDelete() {
     const currentReview = $(this).data("id");
+    console.log(currentReview);
     deleteReview(currentReview);
   }
 
   // This function figures out which review we want to edit and takes it to the appropriate url
   function handleReviewEdit() {
-    console.log($(this).data("id"));
+    // console.log($(this).data("id"));
     const currentReview = $(this).data("id");
     window.location.href = "/review?review_id=" + currentReview;
   }

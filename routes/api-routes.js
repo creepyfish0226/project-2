@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+// const user = require("../models/user");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -51,6 +52,7 @@ module.exports = function(app) {
     }
   });
 
+  // Get route for retrieving all zipcodes
   app.get("/api/zipcodes", (req, res) => {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
@@ -59,11 +61,12 @@ module.exports = function(app) {
       where: { City: "Charlotte" },
       include: [db.Review]
     }).then(dbZipCode => {
-      console.log(dbZipCode);
+      // console.log(dbZipCode);
       res.json(dbZipCode);
     });
   });
 
+  // Get route for retrieving a single zipcode
   app.get("/api/zipcodes/:zip", (req, res) => {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
@@ -77,29 +80,6 @@ module.exports = function(app) {
       res.json(dbZipCode);
     });
   });
-
-  // app.post("/api/zipcodes", (req, res) => {
-  //   db.ZipCode.create(req.body).then(dbZipCode => {
-  //     res.json(dbZipCode);
-  //   });
-  // });
-
-  // // GET route for getting all of the Reviews
-  // app.get("/api/reviews", (req, res) => {
-  //   const query = {};
-  //   if (req.query.zipcode_id) {
-  //     query.ZipCodeId = req.query.zipcode_id;
-  //   }
-  //   // Here we add an "include" property to our options in our findAll query
-  //   // We set the value to an array of the models we want to include in a left outer join
-  //   // In this case, just db.ZipCode
-  //   db.Review.findAll({
-  //     where: query,
-  //     include: [db.ZipCode]
-  //   }).then(dbReview => {
-  //     res.json(dbReview);
-  //   });
-  // });
 
   // Get route for retrieving a single Review
   app.get("/api/reviews/:id", (req, res) => {
@@ -116,26 +96,24 @@ module.exports = function(app) {
     });
   });
 
+  // Post route for creating a Review
   app.post("/api/reviews", (req, res) => {
-    db.Review.create(req.body).then(dbReview => {
-      res.json(dbReview);
+    db.User.findOne({
+      where: {
+        id: req.user.id
+      }
+    }).then(results => {
+      console.log(results);
+      db.Review.create({
+        title: req.body.title,
+        body: req.body.body,
+        ZipCodeId: req.body.ZipCodeId,
+        UserId: results.id
+      }).then(dbReview => {
+        res.json(dbReview);
+      });
     });
   });
-
-  // app.post("/api/reviews/zip", (req, res) => {
-  //   db.ZipCode.findOne({
-  //     where: { Zip: req.body.zip }
-  //   }).then(results => {
-  //     const update = {
-  //       ZipCodeId: results.dataValues.id,
-  //       title: req.body.title,
-  //       body: req.body.body
-  //     };
-  //     db.Review.create(update).then(dbReview => {
-  //       res.json(dbReview);
-  //     });
-  //   });
-  // });
 
   // DELETE route for deleting Reviews
   app.delete("/api/reviews/:id", (req, res) => {
@@ -157,15 +135,5 @@ module.exports = function(app) {
     }).then(dbReview => {
       res.json(dbReview);
     });
-  });
-
-  app.get("/api/zipcode/:zip", (req, res) => {
-    db.ZipCode.findOne({ where: { zip: req.params.zip } })
-      .then(results => res.json(results))
-      .catch(err => {
-        if (err) {
-          throw err;
-        }
-      });
   });
 };

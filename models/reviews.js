@@ -22,6 +22,12 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
+
+    Review.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
   };
 
   return Review;

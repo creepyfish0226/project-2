@@ -5,8 +5,9 @@
             <div class="row">
                 <a class="btn btn-success ml-3" href="/logout">Logout</a>
                 <a class="btn btn-success ml-3" href="/review">New Review</a>
-                <a class="btn btn-success ml-3" href="/zipcodes">Manage ZipCodes</a>
+                <a class="btn btn-success ml-3" href="/zipcodes">Search ZipCodes</a>
                 <a class="btn btn-success ml-3" href="/members">All Reviews</a>
+                <a class="btn btn-success ml-3" href="/user">My Reviews</a>
             </div>
         </div>
     </div>
@@ -20,16 +21,14 @@
             {{/each}}
             <div id='map' style='width: 1115px; height: 300px;'></div>
             <h4 id="biggestCity" style="color: yellow;"></h4>
-            <h2>Reviews:</h2>
-            {{#each review}}
         </div>
         <div class="col-md-12 blog-container">
+            <h2>Reviews:</h2>
+            {{#each review}}
             <div class="card aos-init aos-animate" data-aos="fade-right" data-aos-duration="1000" data-aos-once="false"
                 data-aos-easing="ease-in-out" data-aos-delay="75" data-aos-offset="200" data-review={{id}}>
                 <div class="card-header bg-success">
-                    <button class="delete btn btn-danger" data-id={{id}}>x</button>
-                    <button class="edit btn btn-info"data-id={{id}}>EDIT</button>
-                    <h2>{{ title }}<h5>September 18th 2020, 11:25:51 am</h5>
+                    <h2>{{ title }}<h5>{{createdAt}}</h5>
                     <h5>{{ ZipCode.City }}, {{ ZipCode.State }}</h5>
                     </h2><a href="/zipcodes/{{ZipCode.Zip}}" style="color: yellow;">ZipCode: {{ ZipCode.Zip }}</a>
                 </div>
