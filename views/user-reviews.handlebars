@@ -9,6 +9,9 @@
                 <a class="btn btn-success ml-3" href="/members">All Reviews</a>
             </div>
         </div>
+        <div class="col-md-12 text-center">
+            <h1>Greener Grass</h1>
+        </div>
     </div>
 </nav>
 <div class="container blog">
@@ -20,9 +23,9 @@
                 data-aos-easing="ease-in-out" data-aos-delay="75" data-aos-offset="200" data-review={{id}}>
                 <div class="card-header bg-success">
                     <button class="delete btn btn-danger" data-id={{id}}>x</button>
-                    <button class="edit btn btn-info"data-id={{id}}>EDIT</button>
+                    <button class="edit btn btn-info" data-id={{id}}>EDIT</button>
                     <h2>{{ title }}<h5>{{createdAt}}</h5>
-                    <h5>{{ ZipCode.City }}, {{ ZipCode.State }}</h5>
+                        <h5>{{ ZipCode.City }}, {{ ZipCode.State }}</h5>
                     </h2><a href="/zipcodes/{{ZipCode.Zip}}" style="color: yellow;">ZipCode: {{ ZipCode.Zip }}</a>
                 </div>
                 <div class="card-body">
