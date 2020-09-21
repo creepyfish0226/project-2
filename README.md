@@ -1,3 +1,6 @@
+
+![Image of Yaktocat](public/img/greengrass2.gif)
+
 # Description
 
 For our project we created an app that uses the US Postal Service zip code database and mapbox to post maps and reviews of the area codes people are interested in moving too.
@@ -22,3 +25,4 @@ Researching and implementing a favicon was not a simple task to figure out.  It 
 
 In the future we would like to implement an authentication process for residing in a zipcode.
 Additionally we would like to make the zip code selector an input area rather than a drop down.  
+
