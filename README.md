@@ -1,5 +1,5 @@
 
-![Image of Yaktocat](public/img/greengrass2.gif)
+![Image of Greener Grass](public/img/greengrass2.gif)
 
 # Description
 
