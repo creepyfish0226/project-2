@@ -1,5 +1,4 @@
 
-![Image of Greener Grass](public/img/greengrass2.gif)
 
 # Description
 
@@ -22,7 +21,7 @@ Researching and implementing a favicon was not a simple task to figure out.  It 
 
 
 # Improvements
+ 
 
-In the future we would like to implement an authentication process for residing in a zipcode.
-Additionally we would like to make the zip code selector an input area rather than a drop down.  
 
+![Image of Greener Grass](public/img/greengrass2.gif)
